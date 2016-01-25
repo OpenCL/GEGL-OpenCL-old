@@ -1,0 +1,155 @@
+Journal / transaction log
+
+The journal stores the changes done to a GEGL graph as a set of transactions.
+This journal can be used as a syncronization point for multiple users of
+a GEGL graph, and can be stored as a file. This file can be embedded into
+a higher level file format to persist undo/redo history across saves/loads
+of a document.
+A program using GEGL may use several independent GEGL graphs, and thus several
+independent journals.
+
+== Usecases ==
+* Base for undo/redo stacks in GEGL based applications
+* Automated testing of GEGL graph manipulation API and interactive view widgets
+* Sharing and manipulation of a GEGL graph between multiple programs
+
+== Operations ==
+- Add node. int parent_node_id, int new_node_id
+- Remove node. int node_id, int previous_parent_node_id
+
+- Link pads. int sink_node_id, char *input_pad_name, int source_node_id, char *output_pad_name
+- Unlink pads. int sink_node_id, char *input_pad_name, int source_node_id, char *output_pad_name
+
+- Change property. int node_id, char *key, char *value, char *previous_value
+- Change operation. int node_id, char *new_operation_name, char *previous_operation_name
+
+Each operation is stored such that the inverse operation can be created
+from the stored information alone. This avoids the need to rewind and replay
+parts of the journal when undoing.
+Property values are stored using property-type specific serialization.
+
+Node references/identifiers:
+- GEGL to maintain an (graph) unique identifier for each node: Add an integer identifier to node when added to the graph.
+- The identifier must be be maintained when changing operations.
+- This identifier should be hidden from applications: could be done by making the property read-only in public interface.
+
+== Transactions ==
+The operations are grouped in transactions. Applications can decide the start and end of a transaction.
+If no transaction is explicitly opened, an implicit transaction for the duration of the operation is created.
+
+After a add node operation, one or more change property and change operation operations must follow.
+
+Transaction operation:
+- Recall state. int block_no, int previous_transaction_block_no
+  The block_no must be for a transaction start
+  Sets the graph state back to that of the given transaction
+
+== File format ==
+Append only file format consisting of a series of entries.
+
+Entries can span a number of blocks, except for transaction end which must
+consist of one block, and file header which must consist of 4 blocks (?)
+
+Entry format:
+Each block entry has has a size of X times Y block. An integer in the start
+of the entry specifies how many blocks the entry consists of.
+Each entry has a integer type, denoting what kind of entry it is.
+
+Each entry has an integer entry_size denoting number of blocks the entry consists of.
+Integer precision: 32 bit?
+Block size: 32 bytes?
+
+File Header:
+- Stores a lock with PID for the active process.
+The lock is taken when a transaction starts, and released on transaction end.
+Other applications can check whether the PID is for an alive process.
+The header is not subject to the append-only rule.
+
+Transaction start:
+- Stores a human string description of the change
+? maybe a transaction size in blocks (can be used to quickly traverse forward)
+
+Transaction end:
+Contains a pointer to the start of transaction, as an integer of the transaction start entry.
+If the pointer ever points to a non-transaction start entry, the journal is inconsistent.
+
+Operation entries:
+Each entry (see above list) has a format depending on its type.
+
+=== Example ===
+
+	---------------------
+	| file header       |
+	---------------------
+	| transaction start |
+	---------------------
+	| add node          |
+	---------------------
+	| set property      |
+	---------------------
+	| set property      |
+	---------------------
+	| link pads         |
+	---------------------
+	| transaction end   |
+	---------------------
+	| transaction start |
+	---------------------
+	| remove node       |
+	---------------------
+	| transaction end   |
+	---------------------
+
+== Public API ==
+
+void gegl_graph_transaction_start(GeglGraph *graph, const char *description);
+ Start a graph journal transaction.
+ Any graph change after this and before transaction_end will be recorded
+ as part of the transaction.
+ @graph: top-level node in a GEGL graph
+ @description a human readable description of the change. UTF-8 encoded
+
+void gegl_graph_transaction_end(GeglGraph *graph);
+ End the current graph journal transaction.
+ @graph: top-level node in a GEGL graph
+
+int gegl_graph_transaction_previous(GeglGraph *graph, int block_no);
+ Return the block number of the transaction before the specified transaction. Does not change graph state.
+ @graph: top-level node in a GEGL graph
+ @block_no <= 0 means end of journal. Only block numbers for transaction start entries are valid
+ @return -1 on invalid block_no, else the block number of the previous transaction
+
+int gegl_graph_transaction_recall(GeglGraph *graph, int block_no);
+ Recall a previous state of the graph.
+ @graph: top-level node in a GEGL graph
+ @block_no <= 0 means end of journal. Only block numbers for transaction start entries are valid
+ @return -1 on invalid block_no, else the block number of the new transaction.
+
+char *gegl_graph_transaction_get_description(GeglGraph *graph, int block_no);
+ Return the human readable description for a given transaction.
+ @graph: top-level node in a GEGL graph
+ @block_no Only block numbers for transaction start entries are valid
+ @return NULL on invalid block_no, else the human readable description passed to transaction_start
+
+== Implementation notes ==
+The implementation could be based on the GeglBuffer file format implementation.
+It is suggested to keep the implementations separate, to risk avoid introducing
+regressions in exist code and because it is possible that GeglBuffer will be
+moved to a separate library at some point.
+
+Before writing a transaction into the log, the transaction should be compacted
+such that no superficial operations are stored. For example if a property
+was first changed from 1.0 to 2.0 and then to 3.0, only one operation should
+be recorded.
+
+== Ideas ==
+* Allow to peek at other versions of the graph in the journal?
+
+* Add API for compacting the journal (to avoid it growing without bounds).
+
+* Add a non-blocking version of transactions.
+Note: not guaranteed to succeed. Applications must gracefully handle the transaction being rejected.
+
+  void gegl_graph_transaction_open(GeglGraph *graph, const char *description);
+  gboolean gegl_graph_transaction_commit(GeglGraph *graph);
+

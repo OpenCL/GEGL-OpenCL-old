@@ -1,0 +1,9 @@
+/.deps
+/.libs
+/Makefile
+/Makefile.in
+/buffer-test
+/buffer-test.o
+/buffer-tests-report
+/buffer-tests.inc
+/output

@@ -1,0 +1,962 @@
+2009-02-21  Martin Nordholts  <martinn@svn.gnome.org>
+
+	* Makefile.am: Add gegl-version.h
+
+2009-02-09  Ruben Vermeersch  <ruben@savanne.be>
+
+	* gegl-sharp/index.html: Add a note about having to build GEGL first, add
+	myself as a contributor.
+
+2009-01-20  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: removed stray http://
+
+2009-01-05  Étienne Bersac  <bersace03@gmail.com>
+
+	* gegl-vala/index.html: Added gegl-vala web page.
+
+2009-01-01  Sven Neumann  <sven@gimp.org>
+
+	* index-static.txt.in: updated glib version in Dependencies section.
+
+2009-01-01  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: fix which extra files are parsed for documentation
+	strings (make the GeglPath documentation appear.)
+
+2008-12-28  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: added mention of irc channel.
+
+2008-12-06  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: include more headers for API-doc scanning.
+
+2008-12-06  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/clones.xml: s/gegl:shift/gegl:translate/
+
+2008-11-09  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/clones.xml: re-enabled.
+
+2008-11-06  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/clones.xml: temporary disabled this test, since
+	it throws GEGL into some infinite loop.
+
+2008-10-21  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/OpenRaster-04.xml: updated to gegl: prefix. (this was
+	the only missed file, (as well as this ChangeLog))
+
+2008-10-11  Øyvind Kolås  <pippin@gimp.org>
+
+	* images/GEGL.svg: updated logo with simplified SVG paths and hand
+	trimmed SVG. Path simplification courtesy of Tonda Kavalec.
+	* images/GEGL.png: png rendition of above.
+
+2008-10-05  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: install operations.html
+	* index-static.txt.in: updated contents.
+
+2008-10-03  Kevin Cozens  <kcozens@cvs.gnome.org>
+
+	* Makefile.am: Removed -T option from install line for devhelp.css
+	file. Fixes bug #554643.
+
+2008-10-01  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: clarify licenseing difference between gegl
+	binary and the library.
+
+2008-10-01  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: mention optional libopenraw dependency.
+
+2008-08-07  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: updated listed glib dependency to 2.14.0
+
+2008-08-07  Øyvind Kolås  <pippin@gimp.org>
+
+	* gegl.css: do not display the first heading.
+	* index-static.txt.in: use GEGL logo as main title.
+	* images/GEGL.png: added a png rendition of the GEGL logo.
+
+2008-07-01  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: change acidentaly left out of commit.
+
+2008-06-14  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: rearranged dependencies so ruby is a bullet
+	(with a note).
+
+2008-06-14  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: remove gegl.devhelp upon make clean.
+
+2008-06-14  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: s/helpdir/help_dir/ to make sure additional generated
+	html files get uninstalled.
+
+2008-06-13  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: ensure that the operations get installed with devhelp
+	when parallell builds are done.
+
+2008-06-12  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: moved the babl directory overview to babl.
+
+2008-06-12  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: move compile command above hello-world example,
+	refer to more examples to be found in the examples dir. Document
+	gegl_config() together with the environment.
+
+2008-06-12  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: rearranged the menu items and improved the
+	links available for navigation in the navigation column.
+
+2008-06-12  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: s/BABL_ERROR/BABL_ACCURACY/
+
+2008-06-11  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: made all operation base classes link to
+	enscripted versions of themselves.
+	* Makefile.am: generate html for header files.
+
+2008-06-10  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: updated environment section, rearranged sidebar
+	menu a bit, updated babl version requirement in anticipation of a new
+	babl release for the next GEGL tarball.
+
+2008-05-17  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: updated directory overview with examples and
+	tests directories also tagged other directories using wildcards with ⊙
+	and documentating the autoinclusion of files to the build.
+	* hello-world-video.c: moved to examples.
+	* hello-world.c: moved to examples.
+	* Makefile.am: updated to no longer depend on the moved files.
+
+2008-02-27  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: fixed toc (cheated and did so on website as
+	well).
+
+2008-02-26  Øyvind Kolås  <pippin@gimp.org>
+
+	* gegl.css: add some space above toplevel items in toc.
+	* index-static.txt.in: re-added bugs/mail/changelog shortcuts below
+	toc.
+
+2008-02-25  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: add $(top_srcdir) to paths for sources of the api
+	reference.
+
+2008-02-23  Étienne Bersac  <bersace03@laposte.net>
+
+	* gegl.css: Set explicit black color over the explicit white
+	background.
+
+2008-02-22  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: modified directory overview to reflect changes
+	in operations/*
+
+2008-02-22  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: changed location of brightness-contrast.c
+
+2008-02-20  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: removed gegl-quirks.css: from list of files to install.
+
+2008-02-18  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: do not embed workaround css for IE browsers.
+	* index-static.txt.in: hard code the toc.
+	* gegl-quirks.css: removed.
+
+2008-02-18  Øyvind Kolås  <pippin@gimp.org>
+
+	* gegl.css: removed additional margins imposed on <ul> element.
+
+2008-02-15  Kevin Cozens  <kcozens@cvs.gnome.org>
+
+	* Makefile.am: Updated to fix problems running 'make distcheck'.
+
+2008-02-12  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: fixed link to NEWS.
+
+2008-02-12  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/Makefile.am:
+	* Makefile.am: circumvent libtool when running tools from in-tree, we
+	want to make sure we are using the in-tree gegl library and not the
+	system installed one.
+
+2008-02-12  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.txt.in: minor additions.
+	* Makefile.am: added gegl-quirks to silence irc.
+	* gegl-quirks.css: added
+
+2008-02-11  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: made index.html depend on gegl.css (since asciidoc
+	embeds it).
+	* gegl.css: modified to work around some seemsing glitches in xhtml
+	generated by ascii doc.
+	* index-static.txt.in: some reordering and rewrites.
+
+2008-02-11  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: poked at misc rules in the make file, to at least
+	make it pass $ make install
+
+2008-02-11  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: added rule to build index.html from index.txt
+	* gegl.css: updated to also style ascii-doc output.
+	* index-static.html.in: removed.
+	* index-static.txt.in: added.
+	* gallery/Makefile.am:
+	* pygegl/index.html:
+	* gegl-sharp/index.html:
+	* rgegl/index.html: modified div.toc to be div#toc.
+
+2008-02-09  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: added rule to build hello-world-video
+	* hello-world-video.c: (main): added.
+	* hello-world.c: (main): modified to use fractal-explorer instead of
+	FractalExplorer.
+
+2008-02-07  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added copy pasteable commandline for babl
+	checkout together with the gegl one.
+
+2008-02-04  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: Added link to Development/Extending in index
+	menu. Rephrased processing format to mention and link to wikipedia
+	page describing scRGB. Added initial brain dump on documentation for
+	Operation base classes, needs re-iterating a couple of times.
+
+2008-02-01  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am:
+	* gallery/Makefile.am: removed logic lingering on since crucible
+	was in use.
+
+2007-12-30  Kevin Cozens  <kcozens@cvs.gnome.org>
+
+	* gallery/Makefile.am: Use SHREXT instead of hard-coded ".so".
+
+2007-12-08  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: update list of features.
+
+2007-12-07  Manish Singh  <yosh@gimp.org>
+
+	* pygegl/index.html: updates to reflect the rewritten binding.
+
+2007-11-26  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: updated directory guide.
+
+2007-11-26  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: prepended $(DESTDIR) to help_path. (now passes
+	distcheck)
+
+2007-11-13  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: added rules to install api.html as a devhelp book.
+	* devhelp.css: customized (visually stripped down) CSS for devhelp
+	use.
+
+2007-11-11  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/clones.xml: downloaded clones.xml from the gallery of
+	gegl.org (the previous release), and updated it to work with current
+	gegl.
+
+2007-11-11  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/clones.xml: removed deprecated cache property from load
+	nodes.
+
+2007-11-09  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: LGPLv2->LGPLv3 transition.
+	* rgegl/index.html: LGPLv2->LGPLv3 transition.
+
+2007-09-16  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: modified wording of bit-depth and color model
+	support to avoid confusion on bits per pixel/bits per component. As
+	a response to bug #476671.
+
+2007-09-12  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: include UNCONFIRMED and NEEDINFO bug statuses
+	to bugzilla search link.
+
+2007-09-12  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/clones.xml: s/under/dst-over/
+
+2007-08-09  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/Makefile.am: make the gallery support parallel make.
+
+2007-07-15  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: include gegl-buffer.h in the generated documentation.
+
+2007-06-06  Øyvind Kolås  <pippin@gimp.org>
+
+	* dia/, gimpcon2000/, pr_docs/, reference/: removed outdated/unused
+	documentation/plans.
+
+2007-06-04  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: updated directory overview.
+
+2007-06-03  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: updated directory overview.
+
+2007-06-01  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added direct link to viewcvs from toc on the
+	left.
+
+2007-05-21  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: updated directory overview.
+
+2007-03-21  Étienne Bersac  <bersace03@laposte.net>
+
+	* gallery/Makefile.am: make the code listing text-area be read-only.
+
+2007-02-21  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added UTF8 magic number, patch from John
+	Marshall fixing bug #409954.
+
+2007-02-18  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: joined up sample svn checkout command that for
+	no good reason was split over two lines.
+
+2007-02-18  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added information about the bindings dir in
+	the code overview.
+
+2007-02-18  Øyvind Kolås  <pippin@gimp.org>
+
+	Added dummy <stack></stack> tags around composition, since that is
+	what OpenRaster currently specifies.
+
+	* gallery/OpenRaster-00.xml:
+	* gallery/OpenRaster-01.xml:
+	* gallery/OpenRaster-04.xml:
+
+2007-02-18  Øyvind Kolås  <pippin@gimp.org>
+
+	Modified samples to use a newer XML format.
+
+	* gallery/OpenRaster-04.xml:
+	* gallery/clones.xml:
+
+2007-02-17  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* gegl-sharp/index.html: Slight change to the build instructions since
+	gegl-sharp currently assumes it was checked out with the entire gegl
+	module.
+
+2007-02-17  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added section about building GEGL.
+
+2007-02-17  Øyvind Kolås  <pippin@gimp.org>
+
+	* pygegl/index.html: fixed link to samples.
+	* rgegl/index.html: fixed link to samples.
+
+2007-02-17  Øyvind Kolås  <pippin@gimp.org>
+
+	Added bindings to website, currently the references to the various
+	bindings use absolute URLs since these bindings are not part of the
+	actual GEGL reelease.
+
+	* index-static.html.in: added links to webpages for bindings.
+	* gegl-sharp/: added
+	* gegl-sharp/index.html: added
+	* pygegl/: added
+	* pygegl/index.html: added
+	* rgegl/: added
+	* rgegl/index.html:
+
+2007-02-01  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: document that GEGL_SWAP now specifies the
+	location for swap files.
+
+2007-01-31  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: Added "sparse pyramidial render cache", to
+	list of features modified link to viewcvs of svn.
+
+2007-01-28  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: updated babl dependency to 0.0.12
+
+2007-01-28  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: remove <?xml declaration as Internet Explorer
+	fails to process the file correctly when it is present.
+
+2007-01-28  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: updated feature list, added some more links to
+	other sections of the documentation.
+
+2007-01-28  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/OpenRaster-04.xml: updated to use std-dev instead of radius.
+	* gallery/clones.xml: updated to use std-dev instead of radius.
+
+2007-01-28  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: encode usage
+	* index-static.html.in: patched up to be valid XHTML 1.0.
+
+2007-01-28  Øyvind Kolås  <pippin@gimp.org>
+
+	* gegl.css: added float:left to div.toc.
+
+2007-01-27  Øyvind Kolås  <pippin@gimp.org>
+
+	* gegl.css: added absolute to toc position.
+
+2007-01-25  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: capitalized Ruby and Python.
+
+2007-01-24  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: added rule to build api.html
+	* gegl.css: add scrollbar if toc grows too large.
+	* index-static.html.in: add api.html to tarball
+
+2007-01-18  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added mention of ruby binding in feature list.
+
+2007-01-18  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: fixed URL for anonymous svn access.
+
+2007-01-08  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: do not build gegl.h.html if HAVE_ENSCRIPT is not
+	defined.
+
+2007-01-04  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: fixed building of gegl.h.html.
+
+2007-01-04  Øyvind Kolås  <pippin@gimp.org>
+
+	* hello-world.c: (main): updated to reflect API changes.
+
+2006-12-29  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: updated documentation.
+
+2006-12-29  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: documented GEGL_SWAP.
+
+2006-12-29  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: stripped down directory overview to files
+	actually in dist.
+
+2006-12-29  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: added enscriptification of gegl.h
+	* index-static.html.in: added link to html version of gegl.h
+
+2006-12-29  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/Makefile.am: only generate graphs if graphviz is installed.
+
+2006-12-29  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/Makefile.am: cleaned up build code a bit.
+	* gallery/OpenRaster-04.xml: added comment.
+
+2006-12-29  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: removed reference to crucible, since it
+	doesn't seem to update properly anymore.
+
+2006-12-29  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: improved look of scraped usage information.
+
+2006-12-29  Øyvind Kolås  <pippin@gimp.org>
+
+	Removed a bit of redundancy from samples in the gallery.
+
+	* gallery/OpenRaster-00.xml:
+	* gallery/OpenRaster-01.xml: changed opacity of one layer.
+	* gallery/clones.xml: added comment.
+	* gallery/drop-shadow.xml: removed.
+	* gallery/unsharp-mask.xml: removed.
+	* gallery/OpenRaster-02.xml: removed.
+	* gallery/OpenRaster-03.xml: removed.
+	* gallery/OpenRaster-05.xml: removed.
+
+2006-12-29  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/Makefile.am: improved HTML of gallery.
+
+2006-12-20  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added libopenexr to list of dependencies.
+
+2006-12-20  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added larger than RAM buffers to feature list.
+
+2006-12-08  Øyvind Kolås  <pippin@gimp.org>
+
+	* hello-world.c (main): updated ascii art to reflect code.
+
+2006-12-07  Øyvind Kolås  <pippin@gimp.org>
+
+	* hello-world.c: removed commandline parameter checking.
+
+2006-12-07  Øyvind Kolås  <pippin@gimp.org>
+
+	* hello-world.c: updated sample to use API consistently, swapped old
+	example with a mandelbrot zoomer.
+	* index-static.html.in: updated text around sample.
+
+2006-12-01  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: add hallo-world.c to EXTRA_DIST
+
+2006-12-01  Øyvind Kolås  <pippin@gimp.org>
+
+	* hello-world.c: (main): use gegl_node_process in example.
+
+2006-11-28  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: changed feature describing tiles, to be the
+	term tiled pyramidial buffers.
+
+2006-10-30  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added sudo ldconfig after install of each lib.
+
+2006-12-08  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: added hello-world.c as a dependency for index.html
+
+2006-12-08  Øyvind Kolås  <pippin@gimp.org>
+	
+	* hello-world.c: added comments.
+
+2006-12-08  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added link to hello-world.c
+
+2006-12-08  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added EXR to list of supported formats.
+	* hello-world.c: moved hello world out of the html file.
+	* Makefile.am: include hello-world.c into html with encoding.
+
+2006-10-08  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: removed reference to todo.html
+
+2006-10-08  Øyvind Kolås  <pippin@gimp.org>
+
+	Updated to reflect the migration of the gegl binary from gegl/gegl to
+	bin/gegl
+
+	* docs/Makefile.am:
+	* docs/gallery/Makefile.am:
+	* docs/index-static.html.in:
+
+2006-10-05  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am:
+	* gallery/Makefile.am: changed host in crucible from nfs02 to nfs08.
+
+2006-10-03  Kevin Cozens  <kcozens@cvs.gnome.org>
+
+	* docs/.cvsignore: Added runinfo.
+
+2006-10-03  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: fixed crucible test.
+
+2006-09-27  Øyvind Kolås  <pippin@gimp.org>
+
+	* docs/Makefile.am,
+	* docs/index-static.html.in:  Integrate gegl --help in documentation.
+
+2006-09-27  Kevin Cozens  <kcozens@cvs.gnome.org>
+
+	* docs/gallery/Makefile.am: Removed -s option from invocation of gegl.
+
+2006-09-26  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/.cvsignore: added *.txt
+
+2006-09-26  Øyvind Kolås  <pippin@gimp.org>
+
+	Added timing information to webpage, made the leaks visible when
+	building under crucible.
+
+	* Makefile.am:
+	* gallery/Makefile.am:
+
+2006-09-26  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/Makefile.am: Reenabled statistics generation.
+	* index-static.html.in: Added pango to features.
+
+2006-09-25  Øyvind Kolås  <pippin@gimp.org>
+	
+	* index-static.html.in: reworked Features.
+
+2006-09-25  Øyvind Kolås  <pippin@gimp.org>
+	
+	* todo.html: removed.
+
+2006-09-25  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/Makefile.am: build by using recursive make, added
+	object files in gegl dir and gegl binary itself as dependencies
+	for the images.
+
+2006-09-25  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: mkdir -p.
+
+2006-09-25  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: mask WARNING in echo from crucible:
+
+2006-09-24  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added Hello World example.
+
+2006-09-23  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in:
+
+2006-09-23  Øyvind Kolås  <pippin@gimp.org>
+
+	* todo.html: trimmed down todo list a bit, things done or moved to
+	bugzilla.
+
+2006-09-22  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: updated Code Overview.
+
+2006-09-22  Øyvind Kolås  <pippin@gimp.org>
+
+	* docs/gallery/Makefile.am: removed unneeded elements from GEGL_PATH
+
+2006-09-21  Øyvind Kolås  <pippin@gimp.org>
+
+	Added relative links to other archs when building on crucible.
+
+	* Makefile.am:
+	* gallery/Makefile.am:
+	* gegl.css:
+	* index-static.html.in:
+
+2006-09-21  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/OpenRaster-00.xml:
+	* gallery/OpenRaster-01.xml:
+	* gallery/OpenRaster-02.xml:
+	* gallery/OpenRaster-03.xml:
+	* gallery/OpenRaster-04.xml:
+	* gallery/OpenRaster-05.xml:
+	* gallery/data/romedalen.jpg:
+	* gallery/data/OpenRaster.svg:
+	* gallery/data/OpenRaster.png: New files.
+
+2006-09-21  Øyvind Kolås  <pippin@gimp.org>
+
+	Improved layout of gallery, reindented samples, and
+	scaled down the sizes of the images.
+
+	* gallery/Makefile.am:
+	* gallery/clones.xml:
+	* gallery/drop-shadow.xml:
+	* gallery/unsharp-mask.xml:
+
+2006-09-21  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: added target website, added runinfo embedding, and
+	some content to be used when building under crucible. removed silence.
+	* gallery/Makefile.am: removed silence.
+	* index-static.html.in: add room for RUNINFO include.
+
+2006-09-21  Øyvind Kolås  <pippin@gimp.org>
+
+	* gegl.css: display: none for graphic when printing to fix issues with
+	printing from firefox.
+
+2006-09-21  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/Makefile.am: embed the XML in a textarea on the page.
+
+2006-09-21  Øyvind Kolås  <pippin@gimp.org>
+
+	* images/gegl.ico: added a favicon for use in the gegl documentation.
+	* gallery/Makefile.am,
+	* index-static.html.in,
+	* todo.html: Make use of the new favicon.
+
+2006-09-21  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: fixed link to weekly bug summary in bugzilla,
+	changed terms of external links in menu.
+
+2006-09-20  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: restructured, and stitched together with
+	some introductions to main section to make it flow better as a
+	continous text. Also added links to bugzilla from the old webpages.
+
+2006-09-18  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: moved gallery to top section of menu, added
+	blur about gallery at bottom of features. Merged documentation into
+	a seperate section. Added BABL_DEBUG_TIME to enviroment section.
+
+2006-09-18  Øyvind Kolås  <pippin@gimp.org>
+
+	* gegl.css: Changed width of menu margin.
+	* gallery/Makefile.am: add extra space at top of menu.
+	* index-static.html.in: reworked menu and reordered paragraphs. And
+	added links to crucible, gmane and the ChangeLog.
+	* todo.html: added extra space at top of menu.
+
+2006-09-18  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/Makefile.am: Added time instrumentation log per rendered
+	image.
+
+2006-09-11  Øyvind Kolås  <pippin@gimp.org>
+
+	* todo.html: removed item about adding pango to the text rendering
+	op since it is done now, further layout related still needs to be
+	added though.
+
+2006-09-04  Øyvind Kolås  <pippin@gimp.org>
+
+	* todo.html: added bit about gimp plug-in.
+
+2006-09-04  Øyvind Kolås  <pippin@gimp.org>
+
+	* todo.html: added GeglColor item. also added more info to the cache
+	operation.
+
+2006-09-01  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/drop-shadow.xml: s/class/introspection/ due to gegl API
+	changes.
+
+2006-09-01  Øyvind Kolås  <pippin@gimp.org>
+
+	* todo.html: updated some of the entires.
+
+2006-08-27  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: Refined the features listing.
+
+2006-08-27  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: some wording changes in the glossary.
+	* gegl.css: preparing for more changes to the html introspection
+	of gobjects.
+
+2006-08-26  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added Glossary from gggl.
+
+2006-08-23  Øyvind Kolås  <pippin@gimp.org>
+
+	* todo.html: added links to the GIL/codegen documents.
+
+2006-08-23  Øyvind Kolås  <pippin@gimp.org>
+
+	* TODO.xml,
+	* gegl-color-convert-op.html,
+	* gegl-color-model.html,
+	* gegl.jpg,
+	* geglImageAndOp.html,
+	* genericChannelData.html,
+	* gimp16.html,
+	* gimp16_install_notes.html,
+	* gimp_siggraph.html,
+	* make-todo: removed some of the files that are not contemporary with
+	the rest of GEGL. (maybe they should have been moved into a public
+	"attic" instead, removed for now, they were cluttering the top-level
+	docs dir.).
+
+2006-08-23  Øyvind Kolås  <pippin@gimp.org>
+
+	* Makefile.am: added todo.html to the files being distributed in
+	tarball.
+	* index-static.html.in: reordered reformulated and rewrote portions.
+	* todo.html: migration of content from ../TODO.
+
+2006-08-22  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: Added a section about debug environment
+	variables.
+
+2006-08-17  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/unsharp-mask.xml: Added an example showing how gaussian blur
+	in combination with add and subtract yields an unsharp mask filter.
+
+2006-08-10  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added 2.10 as minimum glib version (needed for
+	g_intern_string)
+
+2006-08-10  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added link to dependency, updated source
+	overview.
+
+2006-08-09  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: removed reference to gegl-operations tarball
+	in bootstrap script.
+
+2006-07-18  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: reworded, reordered and removed things.
+	* gegl.css: removed some cruft.
+
+2006-07-17  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: updates in misc sections.
+
+2006-07-17  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/clones.xml:
+	* gallery/data/car-stack.jpg:
+
+2006-07-17  Øyvind Kolås  <pippin@gimp.org>
+
+	* index-static.html.in: added bootstrapping script to build
+	instructions.
+
+2006-07-17  Øyvind Kolås  <pippin@gimp.org>
+
+	* gegl.css: Added style for the new tabular output for operations.html
+	* index-static.html.in: Added links to categories in operations.html
+	from the menu, and some other reorganization.
+
+2006-07-17  Øyvind Kolås  <pippin@gimp.org>
+
+	* gallery/drop-shadow.xml: Added a test.
+	* gallery/data/gegl.png: gegl logo rendered from svg to png.
+	* gallery/data/vinci-fly3.jpg: a sketch by leonardo davinci.
+
+2006-07-17  Øyvind Kolås  <pippin@gimp.org>
+
+	Added a new set of documentation in HTML format/webpages, mostly
+	based on babl's documentation.
+
+	* gallery/Makefile.am: A gallery system that renders all xml files
+	in the gallery directory to png's and creates a html index.
+	* gegl.css: A stylesheet, originating with the babl documentation.
+	* index-static.html.in: a migration of the data from the existing
+	README.
+	* Makefile.am: modified accordingly.
+
+2005-07-29  Sven Neumann  <sven@gimp.org>
+
+	* reference/gegl/Makefile.am
+	* reference/gegl/gegl-docs.sgml
+	* reference/gegl/gegl-sections.txt
+	* reference/gegl/gegl.types: updated.
+
+	* reference/gegl/tmpl/*.sgml: regenerated.
+
+2005-06-12  Sven Neumann  <sven@gimp.org>
+
+	* reference/gegl/gegl-docs.sgml
+	* reference/gegl/gegl-sections.txt
+	* reference/gegl/gegl.types: GeglFilter -> GeglOperation.
+
+	* reference/gegl/tmpl/gegl-graph.sgml: regenerated.
+
+2005-06-02  Sven Neumann  <sven@gimp.org>
+
+	* reference/gegl/cvs.sgml
+	* reference/gegl/debugging.sgml
+	* reference/gegl/gegl-docs.sgml
+	* reference/gegl/mailinglists.sgml
+	* reference/gegl/prerequisites.sgml
+	* reference/gegl/unittests.sgml
+	* reference/gegl/tmpl/gegl-visitor.sgml: write GEGL in all caps.
+
+2005-06-01  Sven Neumann  <sven@gimp.org>
+
+	* reference/gegl/gegl-docs.sgml: use XInclude instead of entities.
+
+2005-06-01  Sven Neumann  <sven@gimp.org>
+
+	* reference/gegl/Makefile.am
+	* reference/gegl/version.xml.in: removed ...
+
+	* reference/gegl/version.in: ... and readded under this name.
+
+	* reference/gegl/gegl-docs.sgml: changed accordingly.
+
+	* reference/gegl/gegl.types: updated.
+
+	* reference/gegl/tmpl/*.sgml: regenerated.
+
+2005-06-01  Sven Neumann  <sven@gimp.org>
+
+	* reference/gegl/gegl-sections.txt: some cleanup.
+
+	* reference/gegl/gegl-undocumented.txt: removed from CVS.
+
+	* reference/gegl/tmpl/*.sgml: regenerated.

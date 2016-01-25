@@ -1,0 +1,49 @@
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:gnome="http://api.gnome.org/doap-extensions#"
+         xmlns="http://usefulinc.com/ns/doap#">
+
+  <name xml:lang="en">GEGL</name>
+
+  <shortdesc xml:lang="en">
+    GEGL (Generic Graphics Library) is a graph based image processing framework.
+  </shortdesc>
+  <shortdesc xml:lang="de">
+    GEGL (Generic Graphics Library) ist ein graph-basiertes Framework für die
+    Bildverarbeitung.
+  </shortdesc>
+
+  <description xml:lang="en">
+    GEGL (Generic Graphics Library) is a graph based image processing framework.
+  </description>
+  <description xml:lang="de">
+    GEGL (Generic Graphics Library) ist ein graph-basiertes Framework für die
+    Bildverarbeitung.
+  </description>
+
+  <homepage rdf:resource="http://www.gegl.org" />
+
+  <mailing-list
+    rdf:resource="https://mail.gnome.org/mailman/listinfo/gegl-developer-list"
+  />
+
+  <download-page rdf:resource="http://www.gegl.org/#_download" />
+
+  <bug-database
+    rdf:resource="https://bugzilla.gnome.org/browse.cgi?product=GEGL"
+  />
+
+  <programming-language>C</programming-language>
+  <programming-language>OpenCL</programming-language>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Øyvind Kolås</foaf:name>
+      <gnome:userid>ok</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+
+<!-- TODO: generate MAINTAINERS from this file -->
+
+</Project>

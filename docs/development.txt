@@ -1,0 +1,215 @@
+Development
+===========
+
+image::images/GEGL.png[GEGL]
+*#Development#*
+
+This document describes some handy things to know when developing the gegl internals.
+Parts of it is copy-paste of emails on the gegl developer list.
+
+
+== Setting up
+
+=== Ubuntu 8.10
+Setup instructions for Ubuntu 8.10 Intrepid Ibex
+
+To install the mandatory dependencies:
+
+ $ sudo apt-get install libtool automake glib libglib2.0-dev libpng12-dev libgtk2.0-dev git
+
+Some of the other dependencies:
+
+ $ sudo apt-get install asciidoc enscript libjpeg62 libopenraw graphviz-dev
+
+For running gegl the GEGL_PATH, which is used for dynamically loading the 
+operations, has to be set:
+
+ $ export GEGL_PATH=~/Dev/gegl-dev/operations/
+
+=== BABL
+
+When using a development version of babl, gegl has to know from where to get it.
+This is done by setting the BABL_LIBS environment variable before (or during
+as shown below) running gegl's autogen.sh:
+
+ $ ./autogen.sh BABL_LIBS=~/Dev/babl/babl/.libs/libbabl-0.0.so.0.23.0 CFLAGS="-O0"
+
+Then when running the program, the babl library automatically loads extensions
+that are either located in the BABL_HOME directory or in the default installation
+directory, in mentioned order of preference.
+
+ $ export BABL_HOME=~/Dev/babl/extensions
+
+=== Netbeans 6.5
+
+There are some key points to consider when setting up GEGL in an IDE
+(tested on Netbeans):
+
+- have to configure the IDE to use the autogen.sh as configure script
+- normally have to use gegl/bin/.libs/gegl as the executable,
+ not gegl/bin/gegl which is a script.
+- in some (?) case has to use bin/.libs/lt-gegl as the executable, which is some
+ kind of relinked gegl binary
+
+== Debugging
+
+By default gegl and babl uses the flag -g for debug instrumentation, but however
+it doesn't use the -O0 flag for turning off optimisations. This leads to unexpected
+jumps in the code when stepping in a debugger. You have to feed this flag to
+autogen:
+
+ $ ./autogen.sh CFLAGS="-O0"
+ $ make
+
+=== Debug output
+
+GEGL has built in mechanisms for logging debug information.
+
+ GEGL_NOTE (CACHE, "foo %s", bar);
+ GEGL_TIMESTAMP(PROCESSOR);
+ GEGL_MARK()
+
+Where CACHE and PROCESSOR is used the following logging domains are available:
+
+ PROCESS, CACHE, BUFFER_LOAD, BUFFER_SAVE, TILE_BACKEND and PROCESSOR
+
+Actual printing of these can be enabled by setting the GEGL_DEBUG
+environment variable like:
+
+ GEGL_DEBUG=processor,cache
+
+or even
+
+ GEGL_DEBUG=all
+
+There are also a few functions that are useful as you debug from
+within a debugger such as GDB. In GDB for example, you call a function
+interactively in the prompt, while a breakpoint is hit for example, by
+typing
+
+  print function_name(args)
+
+Some useful functions are:
+
+* *gegl_dot_node_to_png_default()* Writes a PNG to /tmp/node.png with
+  the dependency graph for the passed node
+* *gegl_node_dump_depends_on()* Dumps to stdout the nodes that the
+  passed node depends on. With this you can work yourself backwards in
+  a dependency graph.
+* *gegl_node_get_debug_name()* Prints a debug string representation of
+   a node.
+
+=== Graphviz export
+The gegl library has a utility that permits to export the DAG into a graphviz
+format. Graphviz is a library that converts graph descriptions in textual format
+into an image. See http://www.graphviz.org/[graphviz website]
+
+It is done using:
+
+ #include "../gegl/gegl-dot.h"
+ /* for printing the dot output, note that gegl_node is a GeglNode pointer */
+ gchar *dot_output = gegl_to_dot( gegl_node );
+ printf( "%s\n", dot_output );
+ g_free( dot_output );
+
+For creating the graph image:
+
+ $ gegl --file gaussian-blur.xml --output out.png | dot -Tpng > gb.png
+
+This is the gaussian-blur.xml file:
+
+ <?xml version='1.0' encoding='UTF-8'?>
+ <gegl>
+ 	<node operation='gegl:gaussian-blur'>
+ 		<params>
+ 			<param name='std-dev-x'>0.999</param>
+ 			<param name='std-dev-y'>0.999</param>
+ 		</params>
+ 	</node>
+ 	<node operation='gegl:load'>
+ 		<params>
+ 			<param name='path'>in.png</param>
+ 		</params>
+ 	</node>
+ </gegl>
+
+link:images/gaussian-blur-graph.png[Resulting graph].
+
+You can also just call the function gegl_dot_node_to_png() directly
+from within gdb to show the graphviz graph of a node and its
+dependencies.
+
+== Tests
+
+There are regression tests in the subfolder `tests`. These are run
+with `make check`
+
+=== Composition tests
+
+The tests under `tests/compositions` are easy-to-write high-level
+system tests for GEGL and its operations. Together with our
+http://gimptest.flamingtext.com:8080/job/gegl-distcheck/[Jenkins
+server] that runs all our tests each night, the composition tests make
+a powerful framework for detecting regressions.
+
+==== Adding a composition test
+
+To add a composition test for a operation called `gegl:new-operation`,
+do the following:
+
+. Create a GEGL XML file `tests/compositions/new-operation.xml` (will
+  typically look approximately like `tests/compositions/pixelise.xml`)
+. Produce a reference image: `cd tests/compositions; gegl -o
+  /tmp/new-operation.png new-operation.xml` (make sure your operation
+  is installed so `gegl` finds it)
+. Manually inspect the reference image `/tmp/new-operation.png` and
+  move it to `tests/compositions/reference` if it looks like you expect
+. Add `run-new-operation.xml.sh` to the `TESTS` variable in
+  `tests/compositions/Makefile.am`
+. Run `make check` in `tests/compositions` to verify that your test
+  works (note that you must have configured GEGL with `autogen.sh` in
+  order for your change to the `TESTS` variable to be taken into
+  account)
+
+And you're done. Do not manually create `run-new-operation.xml.sh`, it
+will be created automatically for you during build time. It will run
+`gegl` with `tests/compositions/new-operation.xml` and compare the
+result with `tests/compositions/reference/new-operation.png`. If the
+result differs, the test will fail, and mails will be sent to the GEGL
+maintainers. As stated above, this test will run each night, so if
+someone breaks your contributed GEGL operation, it will be discovered
+at most 24 hours later, making it easy to fix, either by reverting the
+bogus commit or by adjusting it.
+
+An example of a commit that adds a composition test for a GEGL
+operation is
+http://git.gnome.org/browse/gegl/commit/?id=13e17712529fb714edcfd67e559bf46b622ff31d[Add
+composition test for gegl:gamma].
+
+== Documentation
+
+This document describes how to document GEGL using it's build system.
+
+There are three utilities used:
+
+. http://www.methods.co.nz/asciidoc/[asciidoc] - used for generating html from text files
+. http://www.codento.com/people/mtr/genscript/[enscript] - used for converting source files (.c/.h) to html
+. a home-made ruby script - used for generating api documentation (not yet documented here)
+
+All documentation resources are placed in /doc and the generation is controlled by the file Makefile.am
+
+=== asciidoc
+
+Add .txt files to the docs dir, and type $ make sync-txt # this will cause the
+text file to be added to the html pages to generate.
+
+=== enscript
+
+TODO
+This example will show how a new c/h file is converted into html using enscript
+
+== Inheritance tree
+
+Here is an automatically generated inheritance tree of the gobjects used by gegl:
+link:images/inheritance.png[GEGL inheritance tree]
+Note that the operations are also gobjects, but they are not included in the inheritance tree.
