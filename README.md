@@ -17,7 +17,53 @@ There already exists OpenCL integration into GEGL and some operations have alrea
 
 Likewise, we have a slack channel for discussions pertaining to development and issues here, [GEGL-OpenCL Slack](https://gegl-opencl.slack.com/)
 
+##### How to Port an Operation
 
++ Find an operation you'd like to work on under /operations/, eg. box-blur which can be found under /operations/common/
++ In box-blur.c, add the following line in the gegl_op_class_int function:
+```c
+static void
+gegl_op_class_init (GeglOpClass *klass)
+{
+  GeglOperationClass       *operation_class;
+  GeglOperationFilterClass *filter_class;
 
+  operation_class = GEGL_OPERATION_CLASS (klass);
+  filter_class    = GEGL_OPERATION_FILTER_CLASS (klass);
 
+  filter_class->process    = process;
+  operation_class->prepare = prepare;
+  
+  // insert this line below
+  operation_class->opencl_support = TRUE;
+  
+  gegl_operation_class_set_keys (operation_class,
+      "name",        "gegl:box-blur",
+      "title",       _("Box Blur"),
+      "categories",  "blur",
+      "description", _("Blur resulting from averaging the colors of a square neighbourhood."),
+      NULL);
+}
+```
++ Create a cl_process function (which contains the host-code implementation) with the following parameters in the same file
+```c
+static gboolean
+cl_process (GeglOperation       *operation,
+            GeglBuffer          *input,
+            GeglBuffer          *output,
+            const GeglRectangle *result)
+```
++ Add a function call in the main process function before the cpu implementation
+```c
+if (gegl_operation_use_opencl (operation))
+    if (cl_process (operation, input, output, result))
+      return TRUE;
+```
++ Both kernel and kernel header file (.cl and .cl.h) should be stored in the /opencl/ folder.
++ Include both files, and any other necessary gegl-cl header in the operation's source code (eg. box-blur.c)
+```c
+#include "opencl/gegl-cl.h"
+#include "buffer/gegl-buffer-cl-iterator.h"
+#include "opencl/box-blur.cl.h"
+```
 
