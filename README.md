@@ -1,5 +1,5 @@
 # GEGL-OpenCL
-#### First official OPP (OpenCL Porting Project) of OpenCL.org
+#### First official OPP (OpenCL Porting Project) of [OpenCL.org](http://opencl.org)
 
 [GEGL](http://gegl.org/) (Generic Graphics Library) is a graph based image processing framework.
 
@@ -86,5 +86,5 @@ if (gegl_operation_use_opencl (operation))
 ```
 + run the following shell command to generate an output
 ```sh
-gegl box-blur.xml -o test.jpg GEGL_USE_OPENCL=yes
+$ gegl box-blur.xml -o test.jpg GEGL_USE_OPENCL=yes
 ```
