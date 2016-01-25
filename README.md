@@ -67,3 +67,24 @@ if (gegl_operation_use_opencl (operation))
 #include "opencl/box-blur.cl.h"
 ```
 
+##### How to Test Output
++ create an xml file (eg. box-blur.xml) containing the following code
+```xml
+<?xml version='1.0' encoding='UTF-8'?>
+<gegl>
+  <node operation='gegl:box-blur'>
+    <params>
+      <param name='radius'>25</param>
+    </params>
+  </node>
+  <node operation='gegl:load'>
+    <params>
+      <param name='path'>../compositions/data/car-stack.png</param>
+    </params>
+  </node>
+</gegl>
+```
++ run the following shell command to generate an output
+```sh
+gegl box-blur.xml -o test.jpg GEGL_USE_OPENCL=yes
+```
