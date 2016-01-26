@@ -117,5 +117,5 @@ $ gegl box-blur.xml -o test2.jpg GEGL_USE_OPENCL=no
 ```
 + and run the below to get a measure of correctness
 ```sh
-$ gegl-imgcmp test.jpg test2.jpg
+$ gegl-imgcmp test2.jpg test.jpg
 ```
