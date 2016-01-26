@@ -37,6 +37,7 @@ Likewise, we have a slack channel for discussions pertaining to development and 
 
 Please create a pull request and name the branch based on what operation you're currently working on, eg. box-blur_kernel
 
+Please ensure that *make clean* is executed before requesting a merge request
 
 </br>
 ##### How to Port an Operation
@@ -119,3 +120,25 @@ $ gegl box-blur.xml -o test2.jpg GEGL_USE_OPENCL=no
 ```sh
 $ gegl-imgcmp test2.jpg test.jpg
 ```
++ there is also a script in /tests/compositions that can be used to verify that the OpenCL operation works
+```sh
+$ cd tests/compositions
+$ python run-compositions.py alien-map.xml
+$ python run-compositions.py alien-map.xml --without-opencl
+```
+
+##### How to Benchmark Performance
++ create an xml file similar to the above in /tests/opencl
++ before running the shell script ensure that the perl module below is installed
+```sh
+$ cpan
+cpan[1]> install "XML::Twig";
+```
++ to run the benchmark script
+```sh
+$ cd tests/opencl
+$ perl benchmark.pl box-blur.xml no
+$ perl benchmark.pl box-blur.xml gpu
+$ perl benchmark.pl box-blur.xml cpu
+``` 
++ note that 'gpu'/'cpu' denotes that OpenCL is enabled, while 'no' denotes that OpenCL is disabled
