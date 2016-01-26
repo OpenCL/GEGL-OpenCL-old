@@ -5,11 +5,12 @@ use XML::Twig;
 use File::Basename;
 
 # Usage
-# perl benchmark.pl [operation-file] <cpu|accelerator|gpu|no>
+# perl benchmark.pl [operation-file] <cpu|accelerator|gpu|no> [iterations]
 
 # Arguments
 my $operation    =  $ARGV[0]; # 'stretch-contrast.xml'
 my $cl_device    =  $ARGV[1]; # see above
+my $it   =  $ARGV[2];
 
 # Write to a null image so as to not bring up the gtk viewer
 my $output = '/dev/null/a.png';
@@ -57,10 +58,18 @@ sub parse_debug_time {
 }
 
 sub get_avg_time {
-    my @timing = `$executable -x '$op_xml' -o $output`;
-    my ($tot_time, $process_time, $op_time) = parse_debug_time(@timing);
+    my $avg_tot_time = 0;
+    my $avg_process_time = 0;
+    my $avg_op_time = 0;
+    for(my $i = 0; $i < $it; ++$i) {
+        my @timing = `$executable -x '$op_xml' -o $output`;
+        my ($tot_time, $process_time, $op_time) = parse_debug_time(@timing);
+        $avg_tot_time       += $tot_time;
+        $avg_process_time   += $process_time;
+        $avg_op_time        += $op_time;
+    }
 
-    print "Operation = ", $op_time, " seconds\n";
+    print "Operation = ", $avg_op_time/$it, " seconds\n";
 
-    return ($tot_time, $process_time, $op_time);
+    return ($avg_tot_time, $avg_process_time, $avg_op_time);
 }

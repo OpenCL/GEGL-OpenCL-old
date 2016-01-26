@@ -147,8 +147,9 @@ cpan[1]> install "XML::Twig";
 + to run the benchmark script
 ```sh
 $ cd tests/opencl
-$ perl benchmark.pl box-blur.xml no
-$ perl benchmark.pl box-blur.xml gpu
-$ perl benchmark.pl box-blur.xml cpu
+$ perl benchmark.pl box-blur.xml no 1
+$ perl benchmark.pl box-blur.xml gpu 1
+$ perl benchmark.pl box-blur.xml cpu 1
 ``` 
 + note that 'gpu'/'cpu' denotes that OpenCL is enabled, while 'no' denotes that OpenCL is disabled
++ the number at the end denotes the number of iterations to run, after which the average time for the operation is returned
