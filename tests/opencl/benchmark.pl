@@ -3,8 +3,6 @@ use strict;
 use warnings;
 use XML::Twig;
 use File::Basename;
-use Image::Size;
-use List::Util qw[min];
 
 # Usage
 # perl benchmark.pl [operation-file] <cpu|accelerator|gpu|no>
