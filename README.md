@@ -9,6 +9,16 @@ With [GEGL](http://gegl.org/) you chain together image processing operations rep
 
 For a brief explanation on how GEGL works, read this [document](https://onedrive.live.com/redir?resid=B05FBF0EF1DAF9A4!7923&authkey=!ALQ1C8VwMFWrtwc&ithint=file%2cdocx)
 
+#### Installing
+
+Read the document above for more information, or refer to the links below for the respective platforms
+
+[On Windows](http://wiki.gimp.org/wiki/Hacking:Building/Windows)
+
+[On Linux Platforms](http://wiki.gimp.org/wiki/Hacking:Building/Linux)
+
+Ensure that [BABL](http://www.gegl.org/babl) is installed first before [GEGL](http://gegl.org).
+
 #### Development
 
 There already exists OpenCL integration into GEGL and some operations have already been ported to run on OpenCL. However, there is still a lot of operations that need porting as listed in the Google Sheet below.
@@ -17,10 +27,14 @@ There already exists OpenCL integration into GEGL and some operations have alrea
 
 Likewise, we have a slack channel for discussions pertaining to development and issues here, [GEGL-OpenCL Slack](https://gegl-opencl.slack.com/)
 
+#### Contributing
+
+Please create a pull request and name the branch based on what operation you're currently working on, eg. box-blur_kernel
+
 ##### How to Port an Operation
 
 + Find an operation you'd like to work on under /operations/, eg. box-blur which can be found under /operations/common/
-+ In box-blur.c, add the following line in the gegl_op_class_int function:
++ In box-blur.c, add the following line in the gegl_op_class_init function:
 ```c
 static void
 gegl_op_class_init (GeglOpClass *klass)
