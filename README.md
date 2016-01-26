@@ -9,6 +9,15 @@ With [GEGL](http://gegl.org/) you chain together image processing operations rep
 
 For a brief explanation on how GEGL works, read this [document](https://onedrive.live.com/redir?resid=B05FBF0EF1DAF9A4!7923&authkey=!ALQ1C8VwMFWrtwc&ithint=file%2cdocx)
 
+</br>
+####Index
+1. [Installing](#installing)
+2. [Development](#development)
+3. [Contributing](#contributing)
+4. [How to Port an Operation](#how-to-port-an-operation)
+5. [How to Test Output](#how-to-test-output)
+6. [How to Benchmark Performance](#how-to-benchmark-performance)
+
 
 </br>
 #### Installing
@@ -127,6 +136,7 @@ $ python run-compositions.py alien-map.xml
 $ python run-compositions.py alien-map.xml --without-opencl
 ```
 
+</br>
 ##### How to Benchmark Performance
 + create an xml file similar to the above in /tests/opencl
 + before running the shell script ensure that the perl module below is installed
